@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->json('image')->nullable();
+            $table->string('image')->nullable()->default('profile.svg');
             $table->rememberToken();
             $table->integer('status')->default(1);
             $table->timestamp('last_login')->nullable();

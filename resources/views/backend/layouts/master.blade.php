@@ -24,8 +24,12 @@
     <link href="{{ asset('backend') }}/css/icons.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/flag-icon.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/style.css" rel="stylesheet" type="text/css">
+    <!-- Summernote css -->
+    <link href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.css" rel="stylesheet">
     <!-- iziToast css -->
-    <link href="{{ asset('backend') }}/plugins/css/iziToast.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/plugins/iziToast/css/iziToast.css" rel="stylesheet">
+    <!-- toggle css -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- End css -->
     @stack('css')
 </head>
@@ -59,10 +63,16 @@
     <script src="{{ asset('backend') }}/plugins/slick/slick.min.js"></script>
     <!-- Custom Dashboard js -->
     <script src="{{ asset('backend') }}/js/custom/custom-dashboard.js"></script>
+    <!-- Summernote js -->
+    <script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="{{ asset('backend') }}/js/custom/custom-form-editor.js"></script>
     <!-- Core js -->
     <script src="{{ asset('backend') }}/js/core.js"></script>
+    <script src="{{ asset('backend') }}/js/status-update.js"></script>
+    <!-- toggle js -->
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <!-- iziToast js -->
-    <script src="{{ asset('backend') }}/plugins/js/iziToast.js"></script>
+    <script src="{{ asset('backend') }}/plugins/iziToast/js/iziToast.js"></script>
     @include('vendor.lara-izitoast.toast')
     <!-- End js -->
     @stack('js')

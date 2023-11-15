@@ -28,7 +28,6 @@ function slugify($text)
     return $text;
 }
 
-
 //get all route list
 function get_route_list()
 {
