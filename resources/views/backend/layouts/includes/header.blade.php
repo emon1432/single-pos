@@ -158,7 +158,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                     <div class="dropdown-item">
                                         <div class="profilename">
-                                            <h5>John Doe</h5>
+                                            <h5>{{ Auth::user()->name }}</h5>
                                         </div>
                                     </div>
                                     <div class="userbox">
@@ -174,10 +174,19 @@
                                                         class="img-fluid" alt="email">Email</a>
                                             </li>
                                             <li class="media dropdown-item">
-                                                <a href="#" class="profile-icon"><img
-                                                        src="{{ asset('backend') }}/images/svg-icon/logout.svg"
-                                                        class="img-fluid" alt="logout">Logout</a>
+                                                <a href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                                    class="profile-icon">
+                                                    <img src="{{ asset('backend') }}/images/svg-icon/logout.svg"
+                                                        class="img-fluid" alt="logout">
+                                                    Logout
+                                                </a>
                                             </li>
+                                            <form method="POST" action="{{ route('logout') }}" id="logout-form"
+                                                style="display: none;">
+
+                                                @csrf
+                                            </form>
                                         </ul>
                                     </div>
                                 </div>
