@@ -1,12 +1,14 @@
 @extends('backend.layouts.master')
 @section('section-title', 'User')
 @section('page-title', 'List')
-@section('action-button')
-    <a class="btn btn-primary-rgba" href="{{ route('users.create') }}">
-        <i class="mr-2 feather icon-plus"></i>
-        Add User
-    </a>
-@endsection
+@if (check_permission('users.create'))
+    @section('action-button')
+        <a class="btn btn-primary-rgba" href="{{ route('users.create') }}">
+            <i class="mr-2 feather icon-plus"></i>
+            Add User
+        </a>
+    @endsection
+@endif
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -49,12 +51,17 @@
                                                 data-id="{{ $user->id }}" data-model="User">
                                         </td>
                                         <td>
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary-rgba">
-                                                <i class="feather icon-edit"></i>
-                                            </a>
-                                            <button class="btn btn-danger-rgba">
-                                                <i class="feather icon-trash"></i>
-                                            </button>
+                                            @if (check_permission('users.edit'))
+                                                <a href="{{ route('users.edit', $user->id) }}"
+                                                    class="btn btn-primary-rgba">
+                                                    <i class="feather icon-edit"></i>
+                                                </a>
+                                            @endif
+                                            @if (check_permission('users.destroy'))
+                                                <button class="btn btn-danger-rgba">
+                                                    <i class="feather icon-trash"></i>
+                                                </button>
+                                            @endif
                                         </td>
                                 @endforeach
                             </tbody>

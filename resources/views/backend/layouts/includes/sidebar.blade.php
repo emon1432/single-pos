@@ -15,39 +15,51 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>User Management</span>
-                        <i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li>
-                            <a href="{{ route('users.create') }}">
-                                Add User
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('users.index') }}">
-                                User List
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>System</span>
-                        <i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li>
-                            <a href="{{ route('roles-permission.index') }}">
-                                Role & Permission
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if (main_menu_permission('users'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>User Management</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (check_permission('users.create'))
+                                <li>
+                                    <a href="{{ route('users.create') }}">
+                                        Add User
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('users.index'))
+                                <li>
+                                    <a href="{{ route('users.index') }}">
+                                        User List
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+                @if (main_menu_permission('roles-permission'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>System</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (check_permission('roles-permission.index'))
+                                <li>
+                                    <a href="{{ route('roles-permission.index') }}">
+                                        Role & Permission
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
             </ul>
         </div>
