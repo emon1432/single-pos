@@ -13,13 +13,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('role_id')->default(2)->constrained('roles')->onDelete('cascade');
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->double('balance')->default(0.00);
+            $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->json('image')->nullable();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->integer('status')->default(1);
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }

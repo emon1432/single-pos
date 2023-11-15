@@ -9,7 +9,7 @@
         content="admin, admin panel, admin template, admin dashboard, responsive, bootstrap 4, ui kits, ecommerce, web app, crm, cms, html, sass support, scss">
     <meta name="author" content="Themesbox">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Orbiter - Bootstrap Minimal & Clean Admin Template</title>
+    <title>Single POS - @yield('page-title')</title>
     <!-- Fevicon -->
     <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico">
     <!-- Start css -->
@@ -24,7 +24,10 @@
     <link href="{{ asset('backend') }}/css/icons.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/flag-icon.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/style.css" rel="stylesheet" type="text/css">
+    <!-- iziToast css -->
+    <link href="{{ asset('backend') }}/plugins/css/iziToast.css" rel="stylesheet">
     <!-- End css -->
+    @stack('css')
 </head>
 
 <body class="vertical-layout">
@@ -58,7 +61,11 @@
     <script src="{{ asset('backend') }}/js/custom/custom-dashboard.js"></script>
     <!-- Core js -->
     <script src="{{ asset('backend') }}/js/core.js"></script>
+    <!-- iziToast js -->
+    <script src="{{ asset('backend') }}/plugins/js/iziToast.js"></script>
+    @include('vendor.lara-izitoast.toast')
     <!-- End js -->
+    @stack('js')
 </body>
 
 </html>

@@ -159,6 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
+        LaraIzitoast\LaraIzitoastServiceProvider::class,
 
         /*
          * Application Service Providers...
