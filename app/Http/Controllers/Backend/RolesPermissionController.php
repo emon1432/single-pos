@@ -11,18 +11,19 @@ class RolesPermissionController extends Controller
     public function index()
     {
         $routeList = get_route_list();
-        $userRoles = Role::all();
-        return view('backend.pages.roles-permission.index', compact('userRoles', 'routeList'));
+        $roles = Role::all();
+        return view('backend.pages.roles-permission.index', compact('roles', 'routeList'));
     }
 
     public function create()
     {
         $routeList = get_route_list();
-        return view('backend.pages.roles-permission.modal-body', compact('routeList'));
+        return view('backend.pages.roles-permission.create', compact('routeList'));
     }
 
     public function store(Request $request)
     {
+        return response()->json($request->all());
         $routeList = get_route_list();
         foreach ($request->permission as $key => $value) {
             if (array_key_exists($key, $routeList)) {
@@ -36,20 +37,20 @@ class RolesPermissionController extends Controller
             }
         }
         $userRole = new Role();
-        $userRole->role_name = $request->role_name;
-        $userRole->role_slug = slugify($request->role_name);
+        $userRole->name = $request->name;
+        $userRole->slug = slugify($request->name);
         $userRole->permission = json_encode($routeList);
         $userRole->save();
 
         notify()->success('Role created successfully');
-        return redirect()->back();
+        return redirect('roles-permission');
     }
 
     public function edit($id)
     {
-        $userRole = Role::findOrFail($id);
-        $routeList = json_decode($userRole->permission, true);
-        return view('backend.pages.roles-permission.modal-body', compact('userRole', 'routeList'));
+        $role = Role::findOrFail($id);
+        $routeList = json_decode($role->permission, true);
+        return view('backend.pages.roles-permission.edit', compact('role', 'routeList'));
     }
 
     public function update(Request $request, $id)
@@ -67,12 +68,12 @@ class RolesPermissionController extends Controller
             }
         }
         $userRole = Role::findOrFail($id);
-        $userRole->role_name = $request->role_name;
-        $userRole->role_slug = slugify($request->role_name);
+        $userRole->name = $request->name;
+        $userRole->slug = slugify($request->name);
         $userRole->permission = json_encode($routeList);
         $userRole->save();
 
         notify()->success('Role updated successfully');
-        return redirect()->back();
+        return redirect('roles-permission');
     }
 }
