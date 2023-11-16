@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\RolesPermissionController;
+use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\OthersController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +15,25 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard.index');
     })->name('dashboard');
+
+    // --------------------> customers <--------------------
+    Route::resource('customers', CustomerController::class)->except(['show','edit','create']);
+
+    // --------------------> suppliers <--------------------
+    Route::resource('suppliers', SupplierController::class)->except(['show','edit','create']);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // --------------------> users <--------------------
     Route::resource('users', UserController::class);

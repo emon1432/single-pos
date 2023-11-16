@@ -30843,7 +30843,7 @@ canvas {
 --------------------------------------
 */
 label {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 input:-internal-autofill-selected {
@@ -30855,7 +30855,7 @@ input:-internal-autofill-selected {
   background-color: #ffffff;
   font-size: 15px;
   color: #8A98AC;
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 1px solid gray;
   border-radius: 3px;
 }
 .form-control:focus {
@@ -32036,20 +32036,20 @@ input[type=range]:focus {
   background-color: #ffffff;
 }
 
-.modal-header {
+/* .modal-header {
   background-color: #0080ff;
   border: 1px solid #0080ff;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-}
+} */
 .modal-header .close {
   color: #ffffff;
 }
 
-.modal-title {
+/* .modal-title {
   color: #ffffff;
   font-size: 18px;
-}
+} */
 
 .modal-body {
   border-right: 1px solid rgba(0, 0, 0, 0.03);
@@ -33480,7 +33480,7 @@ input[type=range]:focus {
   margin: 10px 0;
 }
 .swal2-modal .swal2-file, .swal2-modal .swal2-input, .swal2-modal .swal2-textarea {
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 1px solid gray;
   font-size: 16px;
   box-shadow: none !important;
   background-color: transparent;

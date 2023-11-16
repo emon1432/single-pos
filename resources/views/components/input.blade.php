@@ -1,3 +1,7 @@
-@props(['disabled' => false])
-
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) !!}>
+@props(['label' => '', 'placeholder' => false, 'name' => '', 'type' => 'text', 'required' => false, 'md' => 12])
+<div id="input" class="mb-3 form-group col-md-{{$md}}">
+    <label class="mb-2">{{ $label }}</label>
+    <input class="form-control {{ $name }}" type="{{ $type }}" name="{{ $name }}"
+        placeholder="{{ $placeholder }}" {{ $required ? 'required' : '' }}>
+    <span id="{{ $name }}" class="text-danger d-none"></span>
+</div>
