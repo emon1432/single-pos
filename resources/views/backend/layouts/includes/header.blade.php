@@ -2,11 +2,12 @@
     <div class="row align-items-center">
         <div class="col-md-12">
             <div class="mobile-logobar">
-                <a href="index.html" class="mobile-logo"><img src="{{ asset('backend') }}/images/logo.svg" class="img-fluid"
-                        alt="logo"></a>
+                {{-- <a href="index.html" class="mobile-logo"><img src="{{ asset('backend') }}/images/logo.svg" class="img-fluid"
+                        alt="logo"></a> --}}
+                        <h3>RandomIT</h3>
             </div>
             <div class="mobile-togglebar">
-                <ul class="list-inline mb-0">
+                <ul class="mb-0 list-inline">
                     <li class="list-inline-item">
                         <div class="topbar-toggle-icon">
                             <a class="topbar-toggle-hamburger" href="javascript:void();">
@@ -39,7 +40,7 @@
         <!-- Start col -->
         <div class="col-md-12 align-self-center">
             <div class="togglebar">
-                <ul class="list-inline mb-0">
+                <ul class="mb-0 list-inline">
                     <li class="list-inline-item">
                         <div class="menubar">
                             <a class="menu-hamburger" href="javascript:void();">
@@ -68,15 +69,7 @@
                 </ul>
             </div>
             <div class="infobar">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                        <div class="settingbar">
-                            <a href="javascript:void(0)" id="infobar-settings-open" class="infobar-icon">
-                                <img src="{{ asset('backend') }}/images/svg-icon/settings.svg" class="img-fluid"
-                                    alt="settings">
-                            </a>
-                        </div>
-                    </li>
+                <ul class="mb-0 list-inline">
                     <li class="list-inline-item">
                         <div class="notifybar">
                             <div class="dropdown">
@@ -130,25 +123,6 @@
                         </div>
                     </li>
                     <li class="list-inline-item">
-                        <div class="languagebar">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="languagelink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="flag flag-icon-us flag-icon-squared"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languagelink">
-                                    <a class="dropdown-item" href="#"><i
-                                            class="flag flag-icon-us flag-icon-squared"></i>English</a>
-                                    <a class="dropdown-item" href="#"><i
-                                            class="flag flag-icon-de flag-icon-squared"></i>German</a>
-                                    <a class="dropdown-item" href="#"><i
-                                            class="flag flag-icon-bl flag-icon-squared"></i>France</a>
-                                    <a class="dropdown-item" href="#"><i
-                                            class="flag flag-icon-ru flag-icon-squared"></i>Russian</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-inline-item">
                         <div class="profilebar">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" id="profilelink"
@@ -162,16 +136,11 @@
                                         </div>
                                     </div>
                                     <div class="userbox">
-                                        <ul class="list-unstyled mb-0">
+                                        <ul class="mb-0 list-unstyled">
                                             <li class="media dropdown-item">
                                                 <a href="#" class="profile-icon"><img
                                                         src="{{ asset('backend') }}/images/svg-icon/user.svg"
                                                         class="img-fluid" alt="user">My Profile</a>
-                                            </li>
-                                            <li class="media dropdown-item">
-                                                <a href="#" class="profile-icon"><img
-                                                        src="{{ asset('backend') }}/images/svg-icon/email.svg"
-                                                        class="img-fluid" alt="email">Email</a>
                                             </li>
                                             <li class="media dropdown-item">
                                                 <a href="{{ route('logout') }}"
@@ -184,7 +153,6 @@
                                             </li>
                                             <form method="POST" action="{{ route('logout') }}" id="logout-form"
                                                 style="display: none;">
-
                                                 @csrf
                                             </form>
                                         </ul>
