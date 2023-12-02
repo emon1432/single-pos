@@ -32,7 +32,17 @@ class CustomerController extends Controller
     }
     public function update(Request $request, string $id)
     {
-        //
+        $customer=Customer::find($id);
+        $customer->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'payable'=>$request->payable,
+            'receivable'=>$request->receivable,
+        ]);
+        notify()->success('Customer updated successfully');
+        return back();
     }
 
     /**
@@ -40,6 +50,9 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customer=Customer::find($id);
+        $customer->delete();
+        notify()->success('Customer deleted successfully');
+        return back();
     }
 }

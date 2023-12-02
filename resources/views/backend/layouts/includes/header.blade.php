@@ -4,7 +4,7 @@
             <div class="mobile-logobar">
                 {{-- <a href="index.html" class="mobile-logo"><img src="{{ asset('backend') }}/images/logo.svg" class="img-fluid"
                         alt="logo"></a> --}}
-                        <h3>RandomIT</h3>
+                        <h3>Latest POS</h3>
             </div>
             <div class="mobile-togglebar">
                 <ul class="mb-0 list-inline">

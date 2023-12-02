@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('payable',10,2)->default(0);
             $table->decimal('balance', 10, 2)->default(0);
             $table->string('status')->default('1');
+            $table->timestamps();
         });
     }
 

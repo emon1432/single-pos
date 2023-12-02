@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('section-title', 'Customer')
 @section('page-title', 'List')
-@if (check_permission('users.create'))
+@if (check_permission('cutomers.create'))
     @section('action-button')
         <a href="#" data-toggle="modal" data-target="#addModal" class="btn btn-primary-rgba">
             <i class="mr-2 feather icon-plus"></i>
@@ -43,31 +43,54 @@
                                         <td>{{ $data->receivable }}</td>
                                         <td>{{ $data->payable - $data->receivable }}</td>
                                         <td>{{ $data->payable - $data->receivable }}</td>
-                                        {{-- <td>
-                                            <input type="checkbox" data-toggle="toggle" data-on="Active"
-                                                class="status-update" {{ $data->status == 1 ? 'checked' : '' }}
-                                                data-off="Inactive" data-onstyle="success" data-offstyle="danger"
-                                                data-id="{{ $data->id }}" data-model="User">
-                                        </td> --}}
                                         <td>
-                                            @if (check_permission('users.edit'))
-                                                <a href="{{ route('users.edit', $data->id) }}"
+                                            @if(check_permission('customers.update'))
+                                                <a href="#" data-toggle="modal" data-target="#editModal-{{ $data->id }}"
                                                     class="btn btn-primary-rgba">
                                                     <i class="feather icon-edit"></i>
                                                 </a>
                                             @endif
-                                            @if (check_permission('users.destroy'))
-                                                <button class="btn btn-danger-rgba">
+                                            
+                                            @if (check_permission('customers.destroy'))
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#deleteModal-{{ $data->id }}" class="btn btn-danger-rgba">
                                                     <i class="feather icon-trash"></i>
-                                                </button>
+                                                </a>
                                             @endif
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="100%" class="text-center text-danger">No Data Available</td>
-                                    </tr>
-                                @endforelse
+
+                                    {{-- edit modal  --}}
+                                    <form action="{{ route('customers.update', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <x-edit-modal title="Edit Customer" sizeClass="modal-lg" id="{{ $data->id }}">
+                                            <x-input label="Name:" type="text" name="name" placeholder="Enter Name"
+                                                required md="6" value="{{$data->name}}" />
+                                            <x-input label="Email:" type="email" name="email" placeholder="Enter Email"
+                                                required md="6" value="{{$data->email}}" />
+                                            <x-input label="Phone:" type="text" name="phone" placeholder="Enter Phone"
+                                                required md="6" value="{{$data->phone}}" />
+                                            <x-input label="Address:" type="text" name="address"
+                                                placeholder="Enter Address" required md="6"
+                                                value="{{$data->address}}" />
+                                            <x-input label="Payable:" type="text" name="payable" value="{{$data->payable}}" md="6" />
+                                            <x-input label="Receivable:" type="text" name="receivable" value="{{$data->receivable}}" md="6" />
+                                        </x-edit-modal>
+                                    </form>
+
+                                    {{-- delete modal --}}
+                                    <form action="{{ route('customers.destroy', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-delete-modal title="Delete Customer" id="{{ $data->id }}" />
+                                    </form>
+                                    @empty
+                                        <tr>
+                                            <td colspan="100%" class="text-center text-danger">No Data Available</td>
+                                        </tr>
+                                    @endforelse
+                                
                             </tbody>
                         </table>
                     </div>
@@ -88,4 +111,5 @@
             <x-input label="Receivable:" type="text" name="receivable" value="0" md="6" />
         </x-add-modal>
     </form>
+    
 @endsection

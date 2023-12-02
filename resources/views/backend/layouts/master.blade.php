@@ -13,6 +13,7 @@
     <!-- Fevicon -->
     <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico">
     <!-- Start css -->
+    
     <!-- Switchery css -->
     <link href="{{ asset('backend') }}/plugins/switchery/switchery.min.css" rel="stylesheet">
     <!-- Apex css -->

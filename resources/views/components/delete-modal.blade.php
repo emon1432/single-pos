@@ -1,7 +1,8 @@
 @props([
     'title' => '',
+    'id' => '',
 ])
-<div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete"
+<div class="modal modal-danger fade" id="deleteModal-{{$id}}" tabindex="-1" role="dialog" aria-labelledby="Delete"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="px-4 modal-content">
@@ -19,7 +20,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger delete">Delete</button>
             </div>
         </div>
