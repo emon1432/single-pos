@@ -116,7 +116,22 @@
                         <i class="feather icon-chevron-right pull-right"></i>
                     </a>
                     <ul class="vertical-submenu">
-                        
+                        {{-- //create --}}
+                        @if (check_permission('products.create'))
+                            <li>
+                                <a href="{{ route('products.create') }}">
+                                    Add Product
+                                </a>
+                            </li>
+                        @endif
+                        {{-- //list --}}
+                        @if (check_permission('products.index'))
+                            <li>
+                                <a href="{{ route('products.index') }}">
+                                    Product List
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
 

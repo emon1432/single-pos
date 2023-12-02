@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\RolesPermissionController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
@@ -34,6 +35,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // --------------------> brands <--------------------
     Route::resource('brands', BrandController::class)->except(['show','edit','create']);
 
+    // --------------------> products <--------------------
+    Route::resource('products', ProductController::class);
 
 
     // --------------------> users <--------------------
