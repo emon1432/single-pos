@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\RolesPermissionController;
 use App\Http\Controllers\Backend\SupplierController;
@@ -26,9 +28,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // --------------------> units <--------------------
     Route::resource('units', UnitController::class)->except(['show','edit','create']);
 
+    // --------------------> categories <--------------------
+    Route::resource('categories', CategoryController::class)->except(['show','edit','create']);
 
-
-
+    // --------------------> brands <--------------------
+    Route::resource('brands', BrandController::class)->except(['show','edit','create']);
 
 
 

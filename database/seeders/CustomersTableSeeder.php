@@ -22,16 +22,16 @@ class CustomersTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 2,
-                'name' => 'Mahfujur Rahman',
-                'email' => 'mahfujurr221@gmail.com',
-                'phone' => '01781342259',
-                'address' => 'Dhanmondi,Dhaka.',
+                'name' => 'Default Customer',
+                'email' => 'default@gmail.com',
+                'phone' => '00000000000',
+                'address' => 'Default Address',
                 'receivable' => '0.00',
                 'payable' => '0.00',
                 'balance' => '0.00',
                 'status' => '1',
                 'created_at' => '2023-11-22 19:34:22',
-                'updated_at' => '2023-11-22 19:59:45',
+                'updated_at' => '2023-12-02 20:14:53',
             ),
         ));
         

@@ -86,9 +86,10 @@
                 </li>
                 @endif
                 
-                @if (check_permission('users.index'))
+                {{-- Brand --}}
+                @if (check_permission('brands.index'))
                     <li>
-                        <a href="{{ route('users.index') }}">
+                        <a href="{{ route('brands.index') }}">
                             <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
                             alt="basic">
                             Brand
@@ -96,11 +97,11 @@
                     </li>
                 @endif
 
-                @if (check_permission('users.index'))
+                {{-- Category --}}
+                @if (check_permission('categories.index'))
                     <li>
-                        <a href="{{ route('users.create') }}">
-                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
-                            alt="basic">
+                        <a href="{{ route('categories.index') }}">
+                            <i class="feather icon-book"></i>
                             Category
                         </a>
                     </li>

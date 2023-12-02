@@ -31,7 +31,7 @@ class SuppliersTableSeeder extends Seeder
                 'balance' => '0.00',
                 'status' => '1',
                 'created_at' => '2023-11-22 20:29:26',
-                'updated_at' => '2023-11-22 20:29:26',
+                'updated_at' => '2023-12-01 16:57:40',
             ),
         ));
         
