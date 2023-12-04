@@ -21,6 +21,7 @@
     <!-- Slick css -->
     <link href="{{ asset('backend') }}/plugins/slick/slick.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/plugins/slick/slick-theme.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/icons.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend') }}/css/flag-icon.min.css" rel="stylesheet" type="text/css">
@@ -62,6 +63,10 @@
     <script src="{{ asset('backend') }}/plugins/apexcharts/irregular-data-series.js"></script>
     <!-- Slick js -->
     <script src="{{ asset('backend') }}/plugins/slick/slick.min.js"></script>
+
+    <!-- Select2 js -->
+    <script src="{{ asset('backend') }}/plugins/select2/select2.min.js"></script>
+    
     <!-- Custom Dashboard js -->
     <script src="{{ asset('backend') }}/js/custom/custom-dashboard.js"></script>
     <!-- Summernote js -->
