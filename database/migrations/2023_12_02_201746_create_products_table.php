@@ -22,8 +22,8 @@ return new class extends Migration
             $table->integer('supplier_id')->default(1);
             $table->decimal('purchase_price', 18, 2)->default(0);
             $table->decimal('selling_price', 18, 2)->default(0);
-            $table->integer('unit_quantity_stock')->default(0);
-            $table->integer('subunit_quantity_stock')->default(0);
+            $table->integer('unit_quantity_in_stock')->default(0);
+            $table->integer('subunit_quantity_in_stock')->default(0);
             $table->integer('alert_quantity')->default(0);
             $table->date('manufacturing_date')->nullable();
             $table->date('expiry_date')->nullable();

@@ -56,6 +56,8 @@ class RolesPermissionController extends Controller
             $role->save();
         }
 
+        // $routeList = json_decode($role->permission, true);
+
         foreach ($routeList as $key => $value) {
             foreach ($value as $k => $v) {
                 if (array_key_exists($k, json_decode($role->permission, true)[$key])) {

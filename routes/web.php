@@ -66,5 +66,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     });
 
     // --------------------> others <--------------------
-    Route::get('/status-update', [OthersController::class, 'statusUpdate'])->name('status.update');
+    Route::controller(OthersController::class)->group(function () {
+        Route::get('/status-update', 'statusUpdate')->name('status.update');
+        Route::get('/get/product-by-supplier/{supplier_id}', 'getProductBySupplier')->name('get.productBySupplier');
+    });
 });
