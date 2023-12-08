@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('related_unit_id')->nullable();
             $table->string('related_sign')->nullable();
             $table->integer('related_value')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
