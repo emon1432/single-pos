@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             0 =>
             array(
                 'id' => 1,
-                'role_id' => 2,
+                'role_id' => 1,
                 'name' => 'Admin',
                 'slug' => NULL,
                 'email' => 'admin@gmail.com',

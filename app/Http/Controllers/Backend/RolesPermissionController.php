@@ -23,7 +23,7 @@ class RolesPermissionController extends Controller
 
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        // return response()->json($request->all());
         $routeList = get_route_list();
         foreach ($request->permission as $key => $value) {
             if (array_key_exists($key, $routeList)) {
@@ -49,13 +49,29 @@ class RolesPermissionController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        $routeList = json_decode($role->permission, true);
+        $routeList = get_route_list();
+
+        if($role->permission == null){
+            $role->permission = json_encode($routeList);
+            $role->save();
+        }
+
+        foreach ($routeList as $key => $value) {
+            foreach ($value as $k => $v) {
+                if (array_key_exists($k, json_decode($role->permission, true)[$key])) {
+                    $routeList[$key][$k] = json_decode($role->permission, true)[$key][$k];
+                }
+            }
+        }
         return view('backend.pages.roles-permission.edit', compact('role', 'routeList'));
     }
 
     public function update(Request $request, $id)
     {
         $routeList = get_route_list();
+        if($request->permission == null){
+            $request->permission = $routeList;
+        }
         foreach ($request->permission as $key => $value) {
             if (array_key_exists($key, $routeList)) {
                 foreach ($routeList[$key] as $k => $route) {
