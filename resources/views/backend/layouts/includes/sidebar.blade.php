@@ -53,12 +53,12 @@
                     </a>
                     <ul class="vertical-submenu">
                         <li>
-                            <a href="#">
-                                Create Purchase
+                            <a href="{{ route('purchase.create') }}">
+                                Product Purchase
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{ route('purchase.index') }}">
                                 Purchase List
                             </a>
                         </li>
@@ -145,13 +145,18 @@
                         <span>Expense</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="#" class="{{ request()->is('customers*') ? 'active' : '' }}">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Payment</span>
-                    </a>
-                </li>
+                @if (main_menu_permission('payment-methods'))
+                    @if (check_permission('payment-methods.index'))
+                        <li>
+                            <a href="{{ route('payment-methods.index') }}"
+                                class="{{ request()->is('customers*') ? 'active' : '' }}">
+                                <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                    alt="basic">
+                                <span>Payment Method</span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
 
 
                 <li>

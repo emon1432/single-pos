@@ -3,7 +3,9 @@
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RolesPermissionController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
@@ -21,19 +23,19 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     })->name('dashboard');
 
     // --------------------> customers <--------------------
-    Route::resource('customers', CustomerController::class)->except(['show','edit','create']);
+    Route::resource('customers', CustomerController::class)->except(['show', 'edit', 'create']);
 
     // --------------------> suppliers <--------------------
-    Route::resource('suppliers', SupplierController::class)->except(['show','edit','create']);
+    Route::resource('suppliers', SupplierController::class)->except(['show', 'edit', 'create']);
 
     // --------------------> units <--------------------
-    Route::resource('units', UnitController::class)->except(['show','edit','create']);
+    Route::resource('units', UnitController::class)->except(['show', 'edit', 'create']);
 
     // --------------------> categories <--------------------
-    Route::resource('categories', CategoryController::class)->except(['show','edit','create']);
+    Route::resource('categories', CategoryController::class)->except(['show', 'edit', 'create']);
 
     // --------------------> brands <--------------------
-    Route::resource('brands', BrandController::class)->except(['show','edit','create']);
+    Route::resource('brands', BrandController::class)->except(['show', 'edit', 'create']);
 
     // --------------------> products <--------------------
     Route::resource('products', ProductController::class);
@@ -41,6 +43,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     // --------------------> users <--------------------
     Route::resource('users', UserController::class);
+
+    // --------------------> Payment Method <--------------------
+    Route::resource('payment-methods', PaymentMethodController::class);
+
+    // --------------------> Purchase <--------------------
+    Route::controller(PurchaseController::class)->group(function () {
+        Route::get('/purchase/log',  'purchaseLog')->name('purchase.log-list');
+        Route::post('/purchase/log',  'createPurchaseLog');
+        Route::get('/purchase/pay/{id}', 'purchasePay')->name('purchase.pay');
+    });
+    Route::resource('purchase', PurchaseController::class);
 
 
     // --------------------> roles & permission <--------------------
