@@ -14,7 +14,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with(['brand', 'category', 'unit.related_unit', 'supplier'])->get();
+        // return response()->json($products);
         return view('backend.pages.product.index', compact('products'));
     }
 

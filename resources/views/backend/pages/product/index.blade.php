@@ -23,6 +23,11 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Unit</th>
+                                    <th>Sub Unit</th>
+                                    <th>Supplier</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -31,17 +36,24 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $data->name }}</td>
+                                        <td>{{ $data->brand->name }}</td>
+                                        <td>{{ $data->category->name }}</td>
+                                        <td>{{ $data->unit->name }}</td>
+                                        <td>{{ $data->unit->related_unit->name ?? '' }}</td>
+                                        <td>{{ $data->supplier->name }}</td>
                                         <td>
-                                            @if(check_permission('products.update'))
-                                                <a href="#" data-toggle="modal" data-target="#editModal-{{ $data->id }}"
+                                            @if (check_permission('products.update'))
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#editModal-{{ $data->id }}"
                                                     class="btn btn-primary-rgba">
                                                     <i class="feather icon-edit"></i>
                                                 </a>
                                             @endif
-                                            
+
                                             @if (check_permission('products.destroy'))
                                                 <a href="#" data-toggle="modal"
-                                                    data-target="#deleteModal-{{ $data->id }}" class="btn btn-danger-rgba">
+                                                    data-target="#deleteModal-{{ $data->id }}"
+                                                    class="btn btn-danger-rgba">
                                                     <i class="feather icon-trash"></i>
                                                 </a>
                                             @endif
@@ -55,11 +67,11 @@
                                         <x-delete-modal title="Delete Customer" id="{{ $data->id }}" />
                                     </form>
 
-                                    @empty
-                                        <tr>
-                                            <td colspan="100%" class="text-center text-danger">No Data Available</td>
-                                        </tr>
-                                    @endforelse
+                                @empty
+                                    <tr>
+                                        <td colspan="100%" class="text-center text-danger">No Data Available</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
