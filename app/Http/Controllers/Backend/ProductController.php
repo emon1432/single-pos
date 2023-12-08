@@ -12,18 +12,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $products = Product::all();
         return view('backend.pages.product.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $brands = Brand::all();
@@ -33,41 +27,42 @@ class ProductController extends Controller
         return view('backend.pages.product.create', compact('brands', 'categories', 'units', 'suppliers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
+        // return response()->json($request->all());
+        $product = new Product();
+        $product->name = $request->name;
+        $product->slug = slugify($request->name);
+        $product->sku = $request->sku;
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
+        $product->unit_id = $request->unit_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->selling_price = $request->selling_price;
+        $product->alert_quantity = $request->alert_quantity;
+        $product->description = $request->description;
+        $product->save();
+
+        notify()->success('Product created successfully!');
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

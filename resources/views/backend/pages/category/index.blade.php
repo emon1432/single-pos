@@ -2,13 +2,13 @@
 @section('section-title', 'Category')
 @section('page-title', 'List')
 
-    @section('action-button')
-        <a href="#" data-toggle="modal" data-target="#addModal" class="btn btn-primary-rgba">
-            <i class="mr-2 feather icon-plus"></i>
-            Add Category
-        </a>
-    @endsection
-    
+@section('action-button')
+    <a href="#" data-toggle="modal" data-target="#addModal" class="btn btn-primary-rgba">
+        <i class="mr-2 feather icon-plus"></i>
+        Add Category
+    </a>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -32,16 +32,18 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>
-                                            @if(check_permission('categories.update'))
-                                                <a href="#" data-toggle="modal" data-target="#editModal-{{ $data->id }}"
-                                                    class="btn btn-primary-rgba">
+                                            @if (check_permission('categories.update'))
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#editModal-{{ $data->id }}"
+                                                    class="btn btn-primary-rgba {{ $data->id == 1 ? 'disabled' : '' }}">
                                                     <i class="feather icon-edit"></i>
                                                 </a>
                                             @endif
-                                            
+
                                             @if (check_permission('categories.destroy'))
                                                 <a href="#" data-toggle="modal"
-                                                    data-target="#deleteModal-{{ $data->id }}" class="btn btn-danger-rgba">
+                                                    data-target="#deleteModal-{{ $data->id }}"
+                                                    class="btn btn-danger-rgba {{ $data->id == 1 ? 'disabled' : '' }}">
                                                     <i class="feather icon-trash"></i>
                                                 </a>
                                             @endif
@@ -54,7 +56,7 @@
                                         @method('PUT')
                                         <x-edit-modal title="Edit Category" sizeClass="modal-md" id="{{ $data->id }}">
                                             <x-input label="Name:" type="text" name="name" placeholder="Enter Name"
-                                                required value="{{$data->name}}" />
+                                                required value="{{ $data->name }}" />
                                         </x-edit-modal>
                                     </form>
 
@@ -64,12 +66,12 @@
                                         @method('DELETE')
                                         <x-delete-modal title="Delete Category" id="{{ $data->id }}" />
                                     </form>
-                                    @empty
-                                        <tr>
-                                            <td colspan="100%" class="text-center text-danger">No Data Available</td>
-                                        </tr>
-                                    @endforelse
-                                
+                                @empty
+                                    <tr>
+                                        <td colspan="100%" class="text-center text-danger">No Data Available</td>
+                                    </tr>
+                                @endforelse
+
                             </tbody>
                         </table>
                     </div>
@@ -79,11 +81,11 @@
     </div>
 
     {{-- Add Modal --}}
-    <form action="{{route('categories.store')}}" method="POST">
+    <form action="{{ route('categories.store') }}" method="POST">
         @csrf
         <x-add-modal title="Add Category" sizeClass="modal-md">
             <x-input label="Category Name:" type="text" name="name" placeholder="Enter Category Name" required />
         </x-add-modal>
     </form>
-    
+
 @endsection

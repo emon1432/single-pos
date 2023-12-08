@@ -14,22 +14,24 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
+            $table->string("slug");
+            $table->string('sku');
             $table->integer('category_id')->default(1);
             $table->integer('brand_id')->default(1);
-            $table->integer('main_unit_id');
-            $table->integer('sub_unit_id')->nullable();
-            $table->decimal('purchase_price', 18, 2)->default(0);
-            $table->decimal('sale_price', 18, 2)->default(0);
-            $table->json('image')->nullable();
-            $table->text('description')->nullable();
-
-            $table->integer('main_unit_stock')->default(0);
-            $table->integer('sub_unit_stock')->default(0);
-            $table->integer('alert_quantity')->default(0);
+            $table->integer('unit_id')->default(1);
             $table->integer('supplier_id')->default(1);
-            $table->integer('status')->default(0);
+            $table->decimal('purchase_price', 18, 2)->default(0);
+            $table->decimal('selling_price', 18, 2)->default(0);
+            $table->integer('unit_quantity_stock')->default(0);
+            $table->integer('subunit_quantity_stock')->default(0);
+            $table->integer('alert_quantity')->default(0);
+            $table->date('manufacturing_date')->nullable();
+            $table->date('expiry_date')->nullable();
+            $table->integer('status')->default(1);
+            $table->string('tags')->nullable();
+            $table->text('description')->nullable();
             $table->integer('created_by')->nullable();
+            $table->json('image')->nullable();
             $table->timestamps();
         });
     }

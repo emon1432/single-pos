@@ -44,16 +44,18 @@
                                         <td>{{ $data->payable - $data->receivable }}</td>
                                         <td>{{ $data->payable - $data->receivable }}</td>
                                         <td>
-                                            @if(check_permission('customers.update'))
-                                                <a href="#" data-toggle="modal" data-target="#editModal-{{ $data->id }}"
-                                                    class="btn btn-primary-rgba">
+                                            @if (check_permission('customers.update'))
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#editModal-{{ $data->id }}"
+                                                    class="btn btn-primary-rgba {{ $data->id == 1 ? 'disabled' : '' }}">
                                                     <i class="feather icon-edit"></i>
                                                 </a>
                                             @endif
-                                            
+
                                             @if (check_permission('customers.destroy'))
                                                 <a href="#" data-toggle="modal"
-                                                    data-target="#deleteModal-{{ $data->id }}" class="btn btn-danger-rgba">
+                                                    data-target="#deleteModal-{{ $data->id }}"
+                                                    class="btn btn-danger-rgba {{ $data->id == 1 ? 'disabled' : '' }}">
                                                     <i class="feather icon-trash"></i>
                                                 </a>
                                             @endif
@@ -66,16 +68,18 @@
                                         @method('PUT')
                                         <x-edit-modal title="Edit Customer" sizeClass="modal-lg" id="{{ $data->id }}">
                                             <x-input label="Name:" type="text" name="name" placeholder="Enter Name"
-                                                required md="6" value="{{$data->name}}" />
+                                                required md="6" value="{{ $data->name }}" />
                                             <x-input label="Email:" type="email" name="email" placeholder="Enter Email"
-                                                required md="6" value="{{$data->email}}" />
+                                                required md="6" value="{{ $data->email }}" />
                                             <x-input label="Phone:" type="text" name="phone" placeholder="Enter Phone"
-                                                required md="6" value="{{$data->phone}}" />
+                                                required md="6" value="{{ $data->phone }}" />
                                             <x-input label="Address:" type="text" name="address"
                                                 placeholder="Enter Address" required md="6"
-                                                value="{{$data->address}}" />
-                                            <x-input label="Payable:" type="text" name="payable" value="{{$data->payable}}" md="6" />
-                                            <x-input label="Receivable:" type="text" name="receivable" value="{{$data->receivable}}" md="6" />
+                                                value="{{ $data->address }}" />
+                                            <x-input label="Payable:" type="text" name="payable"
+                                                value="{{ $data->payable }}" md="6" />
+                                            <x-input label="Receivable:" type="text" name="receivable"
+                                                value="{{ $data->receivable }}" md="6" />
                                         </x-edit-modal>
                                     </form>
 
@@ -85,12 +89,12 @@
                                         @method('DELETE')
                                         <x-delete-modal title="Delete Customer" id="{{ $data->id }}" />
                                     </form>
-                                    @empty
-                                        <tr>
-                                            <td colspan="100%" class="text-center text-danger">No Data Available</td>
-                                        </tr>
-                                    @endforelse
-                                
+                                @empty
+                                    <tr>
+                                        <td colspan="100%" class="text-center text-danger">No Data Available</td>
+                                    </tr>
+                                @endforelse
+
                             </tbody>
                         </table>
                     </div>
@@ -100,10 +104,11 @@
     </div>
 
     {{-- Add Modal --}}
-    <form action="{{route('customers.store')}}" method="POST">
+    <form action="{{ route('customers.store') }}" method="POST">
         @csrf
         <x-add-modal title="Add Customer" sizeClass="modal-lg">
-            <x-input label="Customer Name:" type="text" name="name" placeholder="Enter Customer Name" required md="6" />
+            <x-input label="Customer Name:" type="text" name="name" placeholder="Enter Customer Name" required
+                md="6" />
             <x-input label="Email:" type="email" name="email" placeholder="Enter Email" required md="6" />
             <x-input label="Phone:" type="text" name="phone" placeholder="Enter Phone" required md="6" />
             <x-input label="Address:" type="text" name="address" placeholder="Enter Address" required md="6" />
@@ -111,5 +116,5 @@
             <x-input label="Receivable:" type="text" name="receivable" value="0" md="6" />
         </x-add-modal>
     </form>
-    
+
 @endsection

@@ -10,7 +10,7 @@ class UnitController extends Controller
 {
     public function index()
     {
-        $units = Unit::orderBy('id', 'desc')->get();
+        $units = Unit::orderBy('id', 'asc')->get();
         return view('backend.pages.unit.index', compact('units'));
     }
 

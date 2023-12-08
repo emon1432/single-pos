@@ -30,11 +30,11 @@
                                 placeholder="Enter product name" required>
                         </div>
 
-                        {{-- Product code  --}}
+                        {{-- Product sku  --}}
                         <div class="mt-2 col-md-6">
-                            <label for="code" class="form-label fw-bold">Product Code</label>
+                            <label for="sku" class="form-label fw-bold">Product SKU</label>
                             <input type="text" class="form-control"
-                                placeholder="Enter product code" name="code">
+                                placeholder="Enter product SKU" name="sku">
                         </div>
                         
                         {{-- Brand --}}
