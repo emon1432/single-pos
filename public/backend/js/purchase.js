@@ -25,7 +25,9 @@ $("select[name='supplier_id']").change(function () {
                             value.unit_quantity_in_stock +
                             '" data-subunit_quantity_in_stock="' +
                             value.subunit_quantity_in_stock +
-                            '" data-subunit_exits="' +
+                            '"data-unit_id="' +
+                            value.unit.id +
+                            '"data-subunit_exits="' +
                             value.unit.related_unit +
                             '" value="' +
                             value.id +
@@ -67,6 +69,9 @@ $(document).on("click", ".addRow", function () {
     //find all the input fields
     var product_id = $("select[name='product_id']").val();
     var product_name = $("select[name='product_id'] option:selected").text();
+    var unit_id = $("select[name='product_id'] option:selected").data(
+        "unit_id"
+    );
     var unit_quantity_in_stock = $(
         "select[name='product_id'] option:selected"
     ).data("unit_quantity_in_stock");
@@ -104,6 +109,8 @@ $(document).on("click", ".addRow", function () {
             $("tbody tr:last")
                 .find("input[name='product_name[]']")
                 .val(product_name);
+
+            $("tbody tr:last").find("input[name='unit_id[]']").val(unit_id);
 
             $("tbody tr:last")
                 .find("input[name='current_unit_quantity_in_stock[]']")
@@ -272,7 +279,7 @@ function addRow() {
     var tr =
         "<tr>" +
         '<td><input type="hidden" name="product_id[]" value=""><input type="text" name="product_name[]" value="" class="form-control" readonly></td>' +
-        '<td><input type="text" name="current_unit_quantity_in_stock[]" value="" class="form-control" readonly></td>' +
+        '<td><input type="hidden" name="unit_id[]" value=""><input type="text" name="current_unit_quantity_in_stock[]" value="" class="form-control" readonly></td>' +
         '<td><input type="text" name="current_subunit_quantity_in_stock[]" value="" class="form-control" readonly></td>' +
         '<td><input type="text" step="any" name="unit_quantity[]" value="0" min="0" class="form-control" required></td>' +
         '<td><input type="text" step="any" name="subunit_quantity[]" value="0" min="0" class="form-control" required></td>' +

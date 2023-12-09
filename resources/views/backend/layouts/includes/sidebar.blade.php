@@ -44,26 +44,39 @@
                         <span>Damage</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Purchase</span>
-                        <i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        <li>
-                            <a href="{{ route('purchase.create') }}">
-                                Product Purchase
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('purchase.index') }}">
-                                Purchase List
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if (main_menu_permission('purchase'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Purchase</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (check_permission('purchase.create'))
+                                <li>
+                                    <a href="{{ route('purchase.create') }}">
+                                        Product Purchase
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('purchase.index'))
+                                <li>
+                                    <a href="{{ route('purchase.index') }}">
+                                        Purchase List
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('purchase.log-list'))
+                                <li>
+                                    <a href="{{ route('purchase.log-list') }}">
+                                        Purchase Log
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
 
                 @if (check_permission('units.index'))
@@ -71,7 +84,7 @@
                         <a href="{{ route('units.index') }}">
                             <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
                                 alt="basic">
-                            Unit
+                            <span>Unit</span>
                         </a>
                     </li>
                 @endif
@@ -82,7 +95,7 @@
                         <a href="{{ route('brands.index') }}">
                             <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
                                 alt="basic">
-                            Brand
+                            <span>Brand</span>
                         </a>
                     </li>
                 @endif
@@ -92,7 +105,7 @@
                     <li>
                         <a href="{{ route('categories.index') }}">
                             <i class="feather icon-book"></i>
-                            Category
+                            <span>Category</span>
                         </a>
                     </li>
                 @endif

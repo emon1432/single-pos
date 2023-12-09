@@ -19,12 +19,14 @@ return new class extends Migration
             $table->decimal('estimated_amount', 10, 2)->default(0);
             $table->decimal('order_tax', 10, 2)->default(0);
             $table->decimal('shipping_charge', 10, 2)->default(0);
+            $table->decimal('others_charge', 10, 2)->default(0);
             $table->decimal('discount', 10, 2)->default(0);
-            $table->decimal('final_amount', 10, 2)->default(0);
-            $table->decimal('paid_amount', 10, 2)->default(0);
-            $table->decimal('due_amount', 10, 2)->default(0);
+            $table->decimal('total_amount', 10, 2)->default(0);
+            $table->decimal('total_paid', 10, 2)->default(0);
+            $table->decimal('total_due', 10, 2)->default(0);
             $table->string('note')->nullable();
             $table->string('file')->nullable();
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

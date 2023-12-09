@@ -16,9 +16,12 @@ return new class extends Migration
             $table->foreignId('purchase_id')->constrained('purchases')->onDelete('cascade');
             $table->string('purchase_no');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->string('product_name');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
-            $table->decimal('quantity', 10, 2)->default(0);
-            $table->decimal('price', 10, 2)->default(0);
+            $table->decimal('unit_quantity', 10, 2)->default(0);
+            $table->decimal('subunit_quantity', 10, 2)->default(0);
+            $table->decimal('unit_price', 10, 2)->default(0);
+            $table->decimal('subunit_price', 10, 2)->default(0);
             $table->decimal('total', 10, 2)->default(0);
             $table->timestamps();
         });

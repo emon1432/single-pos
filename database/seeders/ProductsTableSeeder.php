@@ -77,7 +77,7 @@ class ProductsTableSeeder extends Seeder
                 'sku' => 'Consectetur aut rer',
                 'category_id' => 3,
                 'brand_id' => 2,
-                'unit_id' => 7,
+                'unit_id' => 6,
                 'supplier_id' => 4,
                 'purchase_price' => '0.00',
                 'selling_price' => '875.00',
