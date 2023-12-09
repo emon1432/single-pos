@@ -40,7 +40,7 @@
                                 <label for="validationCustom03" class="form-label font-weight-bold">
                                     Note</label>
                                 <input type="text" class="form-control" id="validationCustom03" placeholder="Enter Note"
-                                    name="note" required>
+                                    name="note">
                             </div>
                         </div>
                         <hr class="my-5">
@@ -65,7 +65,7 @@
                                 </select>
                             </div>
                             {{-- Add Button --}}
-                            <div class="mt-5 col-md-12 text-center">
+                            <div class="mt-5 text-center col-md-12">
                                 <button type="submit" class="btn btn-primary-rgba addRow">
                                     <i class="mr-2 feather icon-plus"></i>
                                     Add Product
@@ -186,7 +186,7 @@
                                 </table>
                                 {{-- Submit & Reset Button --}}
                                 <div class="row submitAndReset" style="display: none;">
-                                    <div class="col-md-12 text-center">
+                                    <div class="text-center col-md-12">
                                         <button class="btn btn-primary col-sm-6 submit_button">Submit</button>
                                         <button type="reset" class="btn btn-danger col-sm-4 reset_button">Reset</button>
                                     </div>
