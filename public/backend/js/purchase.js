@@ -25,6 +25,8 @@ $("select[name='supplier_id']").change(function () {
                             value.unit_quantity_in_stock +
                             '" data-subunit_quantity_in_stock="' +
                             value.subunit_quantity_in_stock +
+                            '" data-subunit_exits="' +
+                            value.unit.related_unit +
                             '" value="' +
                             value.id +
                             '">' +
@@ -71,6 +73,9 @@ $(document).on("click", ".addRow", function () {
     var subunit_quantity_in_stock = $(
         "select[name='product_id'] option:selected"
     ).data("subunit_quantity_in_stock");
+    var subunit_exits = $("select[name='product_id'] option:selected").data(
+        "subunit_exits"
+    );
     //check if the product is already added
     // console.log([product_id, product_name]);
     var check = 0;
@@ -103,10 +108,23 @@ $(document).on("click", ".addRow", function () {
             $("tbody tr:last")
                 .find("input[name='current_unit_quantity_in_stock[]']")
                 .val(unit_quantity_in_stock);
+            if (subunit_exits != null) {
+                $("tbody tr:last")
+                    .find("input[name='current_subunit_quantity_in_stock[]']")
+                    .val(subunit_quantity_in_stock);
+            } else {
+                $("tbody tr:last")
+                    .find("input[name='current_subunit_quantity_in_stock[]']")
+                    .attr("type", "hidden");
 
-            $("tbody tr:last")
-                .find("input[name='current_subunit_quantity_in_stock[]']")
-                .val(subunit_quantity_in_stock);
+                $("tbody tr:last")
+                    .find("input[name='subunit_quantity[]']")
+                    .attr("type", "hidden");
+
+                $("tbody tr:last")
+                    .find("input[name='subunit_price[]']")
+                    .attr("type", "hidden");
+            }
         }
     }
 });
