@@ -16,7 +16,8 @@
                     <h4 class="card-title font-weight-bold">New Product Purchase</h4>
                 </div>
                 <div class="card-body">
-                    <form class="needs-validation" novalidate action="" method="POST" enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate id="purchaseForm" action="{{ url('/purchase') }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             {{-- Purchase Date --}}
@@ -77,11 +78,13 @@
                                 <table class="table table-bordered table-hover" id="purchaseTable">
                                     <thead>
                                         <tr>
-                                            <th width="20%">Category</th>
-                                            <th width="30%">Product Name</th>
-                                            <th width="10%">Current Stock</th>
-                                            <th width="10%">Quantity</th>
+                                            <th width="20%">Product Name</th>
+                                            <th width="10%">Current Unit Stock</th>
+                                            <th width="10%">Current Subunit Stock</th>
+                                            <th width="10%">Unit Quantity</th>
+                                            <th width="10%">Subunit Quantity</th>
                                             <th width="10%">Unit Price</th>
+                                            <th width="10%">Subunit Price</th>
                                             <th width="10%">Total Price</th>
                                             <th width="5%">Action</th>
                                         </tr>
@@ -91,7 +94,7 @@
                                     </tbody>
                                     <tfoot style="display: none;">
                                         <tr class="bg-light-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end">Sub Total</td>
+                                            <td colspan="7" class="text-right fw-bold text-end">Sub Total</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="estimated_amount" value="0"
                                                     class="form-control" readonly>
@@ -99,7 +102,7 @@
                                         </tr>
                                         {{-- Order tax --}}
                                         <tr class="bg-light-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end">Order Tax(%)</td>
+                                            <td colspan="7" class="text-right fw-bold text-end">Order Tax(%)</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="order_tax" value="0"
                                                     min="0" class="form-control">
@@ -107,7 +110,7 @@
                                         </tr>
                                         {{-- Shipping Charge --}}
                                         <tr class="bg-light-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end">Shipping Charge
+                                            <td colspan="7" class="text-right fw-bold text-end">Shipping Charge
                                             </td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="shipping_charge" min="0"
@@ -116,7 +119,7 @@
                                         </tr>
                                         {{-- Others Charge --}}
                                         <tr class="bg-light-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end">Others Charge</td>
+                                            <td colspan="7" class="text-right fw-bold text-end">Others Charge</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="others_charge" min="0"
                                                     value="0" class="form-control">
@@ -124,7 +127,7 @@
                                         </tr>
                                         {{-- Discount --}}
                                         <tr class="bg-light-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end">Discount</td>
+                                            <td colspan="7" class="text-right fw-bold text-end">Discount</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="discount_amount"
                                                     min="0" value="0" class="form-control discount_amount"
@@ -133,7 +136,7 @@
                                         </tr>
                                         {{-- Total Amount --}}
                                         <tr class="bg-warning">
-                                            <td colspan="5" class="text-right fw-bold text-end ">Payable
+                                            <td colspan="7" class="text-right fw-bold text-end ">Payable
                                                 Amount</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="total_amount" min="0"
@@ -142,10 +145,10 @@
                                         </tr>
                                         {{-- Payment Method --}}
                                         <tr class="bg-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end text-light">Payment
+                                            <td colspan="7" class="text-right fw-bold text-end text-light">Payment
                                                 Method</td>
                                             <td colspan="2">
-                                                <select class="single-select" name="payment_method_id" required>
+                                                <select class="form-control" name="payment_method_id" required>
                                                     @foreach ($paymentMethods as $payment_method)
                                                         <option value="{{ $payment_method->id }}">
                                                             {{ $payment_method->name }}</option>
@@ -155,7 +158,7 @@
                                         </tr>
                                         {{-- Payment Reference --}}
                                         <tr class="bg-primary payment_reference" style="display: none;">
-                                            <td colspan="5" class="text-right fw-bold text-end text-light">Payment
+                                            <td colspan="7" class="text-right fw-bold text-end text-light">Payment
                                                 Reference</td>
                                             <td colspan="2">
                                                 <input type="text" name="payment_reference" class="form-control">
@@ -163,7 +166,7 @@
                                         </tr>
                                         {{-- Paid Amount --}}
                                         <tr class="bg-primary">
-                                            <td colspan="5" class="text-right fw-bold text-end text-light">Paid
+                                            <td colspan="7" class="text-right fw-bold text-end text-light">Paid
                                                 Amount</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="paid_amount" min="0"
@@ -172,7 +175,7 @@
                                         </tr>
                                         {{-- Due Amount in --}}
                                         <tr class="bg-light-danger due_amount">
-                                            <td colspan="5" class="text-right fw-bold text-end">Due
+                                            <td colspan="7" class="text-right fw-bold text-end">Due
                                                 Amount</td>
                                             <td colspan="2">
                                                 <input type="number" step="any" name="due_amount" min="0"

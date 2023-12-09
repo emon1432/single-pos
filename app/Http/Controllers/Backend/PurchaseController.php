@@ -33,7 +33,7 @@ class PurchaseController extends Controller
         $products = Product::orderBy('name', 'asc')->get();
 
         // get all payment methods
-        $paymentMethods = PaymentMethod::orderBy('name', 'asc')->get();
+        $paymentMethods = PaymentMethod::orderBy('id', 'asc')->get();
 
         // get last purchase no
         $purchase = Purchase::orderBy('id', 'desc')->select('purchase_no')->first();
@@ -44,20 +44,13 @@ class PurchaseController extends Controller
             $purchase_no = "A0000001";
         }
 
-        // return response()->json([
-        //     'suppliers' => $suppliers,
-        //     'categories' => $categories,
-        //     'products' => $products,
-        //     'paymentMethods' => $paymentMethods,
-        //     'purchase_no' => $purchase_no
-        // ]);
-
         return view('backend.pages.purchase.create', compact('suppliers', 'categories', 'products', 'paymentMethods', 'purchase_no'));
     }
 
     public function store(Request $request)
     {
         //
+        return $request->all();
     }
 
     public function show(string $id)

@@ -37,7 +37,7 @@ class OthersController extends Controller
     public function getProductBySupplier($supplier_id)
     {
         $products = Product::where('supplier_id', $supplier_id)
-            ->with('category', 'unit.related_unit')
+            ->with('unit.related_unit')
             ->where('status', 1)
             ->orderBy('name', 'asc')
             ->get();
