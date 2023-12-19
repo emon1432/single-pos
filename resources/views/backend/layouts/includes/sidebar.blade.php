@@ -18,32 +18,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>POS</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Sale List</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Return List</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Damage</span>
-                    </a>
-                </li>
                 @if (main_menu_permission('purchase'))
                     <li>
                         <a href="javaScript:void();">
@@ -78,7 +52,6 @@
                     </li>
                 @endif
 
-
                 @if (check_permission('units.index'))
                     <li>
                         <a href="{{ route('units.index') }}">
@@ -89,7 +62,6 @@
                     </li>
                 @endif
 
-                {{-- Brand --}}
                 @if (check_permission('brands.index'))
                     <li>
                         <a href="{{ route('brands.index') }}">
@@ -100,7 +72,6 @@
                     </li>
                 @endif
 
-                {{-- Category --}}
                 @if (check_permission('categories.index'))
                     <li>
                         <a href="{{ route('categories.index') }}">
@@ -110,54 +81,56 @@
                     </li>
                 @endif
 
-                {{-- products --}}
-                <li>
-                    <a href="javaScript:void();">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Products</span>
-                        <i class="feather icon-chevron-right pull-right"></i>
-                    </a>
-                    <ul class="vertical-submenu">
-                        {{-- //create --}}
-                        @if (check_permission('products.create'))
-                            <li>
-                                <a href="{{ route('products.create') }}">
-                                    Add Product
-                                </a>
-                            </li>
-                        @endif
-                        {{-- //list --}}
-                        @if (check_permission('products.index'))
-                            <li>
-                                <a href="{{ route('products.index') }}">
-                                    Product List
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
+                @if (main_menu_permission('products'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Products</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            {{-- //create --}}
+                            @if (check_permission('products.create'))
+                                <li>
+                                    <a href="{{ route('products.create') }}">
+                                        Add Product
+                                    </a>
+                                </li>
+                            @endif
+                            {{-- //list --}}
+                            @if (check_permission('products.index'))
+                                <li>
+                                    <a href="{{ route('products.index') }}">
+                                        Product List
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-                <li>
-                    <a href="{{ route('customers.index') }}"
-                        class="{{ request()->is('customers*') ? 'active' : '' }}">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Customers</span>
-                    </a>
-                </li>
+                @if (main_menu_permission('customers'))
+                    <li>
+                        <a href="{{ route('customers.index') }}"
+                            class="{{ request()->is('customers*') ? 'active' : '' }}">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li>
-                    <a href="{{ route('suppliers.index') }}">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Suppliers</span>
-                    </a>
-                </li>
+                @if (main_menu_permission('suppliers'))
+                    <li>
+                        <a href="{{ route('suppliers.index') }}">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Suppliers</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li>
-                    <a href="#" class="{{ request()->is('customers*') ? 'active' : '' }}">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Expense</span>
-                    </a>
-                </li>
                 @if (main_menu_permission('payment-methods'))
                     @if (check_permission('payment-methods.index'))
                         <li>
@@ -171,29 +144,6 @@
                     @endif
                 @endif
 
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Promotional SMS</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Accounts</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid" alt="basic">
-                        <span>Reports</span>
-                    </a>
-                </li>
-
-                {{-- users --}}
                 @if (main_menu_permission('users'))
                     <li>
                         <a href="javaScript:void();">
@@ -220,6 +170,7 @@
                         </ul>
                     </li>
                 @endif
+
                 @if (main_menu_permission('roles-permission'))
                     <li>
                         <a href="javaScript:void();">
@@ -239,14 +190,6 @@
                         </ul>
                     </li>
                 @endif
-
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
-                            alt="basic">
-                        <span>Backup</span>
-                    </a>
-                </li>
 
             </ul>
         </div>
