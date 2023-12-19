@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BankAccountController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
@@ -54,6 +55,46 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/purchase/pay/{id}', 'purchasePay')->name('purchase.pay');
     });
     Route::resource('purchase', PurchaseController::class);
+
+    // -------------------------------------> Accounting <-------------------------------------
+
+    // --------------------> Bank Account <--------------------
+    Route::get('/balance-sheet', [BankAccountController::class, 'balance_sheet'])->name('accounting.balance-sheet');
+    Route::resource('bank-accounts', BankAccountController::class);
+
+
+    // --------------------> Bank Transaction <--------------------
+    Route::controller(BankTransactionController::class)->group(function () {
+        // --------------------> Transaction <--------------------
+        Route::get('/transaction-history', 'transactionHistory')->name('accounting.transaction-history');
+
+        // --------------------> Deposit <--------------------
+        Route::get('/deposit', 'deposit')->name('accounting.deposit-create');
+        Route::post('/deposit', 'depositStore')->name('accounting.deposit-store');
+
+        // --------------------> Withdraw <--------------------
+        Route::get('/withdraw', 'withdraw')->name('accounting.withdraw-create');
+        Route::post('/withdraw', 'withdrawStore')->name('accounting.withdraw-store');
+
+        // --------------------> Bank Transfer <--------------------
+        Route::get('/bank-transfer-list', 'bankTransferList')->name('accounting.bank-transfer-list');
+        Route::get('/bank-transfer', 'bankTransfer')->name('accounting.bank-transfer-create');
+        Route::post('/bank-transfer', 'bankTransferStore')->name('accounting.bank-transfer-store');
+    });
+
+    // --------------------> income-sources <--------------------
+    Route::resource('/income-sources', IncomeSourceController::class);
+
+    // --------------------> expense-categories <--------------------
+    Route::resource('/expense-categories', ExpenseCategoryController::class);
+
+    // --------------------> monthWise <--------------------
+    Route::controller(MonthWiseController::class)->group(function () {
+        // --------------------> income <--------------------
+        Route::get('/income-month-wise', 'income')->name('accounting.income-month-wise');
+        // --------------------> expense <--------------------
+        Route::get('/expense-month-wise', 'expense')->name('accounting.expense-month-wise');
+    });
 
 
     // --------------------> roles & permission <--------------------
