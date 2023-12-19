@@ -51,7 +51,7 @@ class RolesPermissionController extends Controller
         $role = Role::findOrFail($id);
         $routeList = get_route_list();
 
-        if($role->permission == null){
+        if ($role->permission == null) {
             $role->permission = json_encode($routeList);
             $role->save();
         }
@@ -60,8 +60,12 @@ class RolesPermissionController extends Controller
 
         foreach ($routeList as $key => $value) {
             foreach ($value as $k => $v) {
-                if (array_key_exists($k, json_decode($role->permission, true)[$key])) {
-                    $routeList[$key][$k] = json_decode($role->permission, true)[$key][$k];
+                if (array_key_exists($key, json_decode($role->permission, true))) {
+                    if (array_key_exists($k, json_decode($role->permission, true)[$key])) {
+                        $routeList[$key][$k] = json_decode($role->permission, true)[$key][$k];
+                    }
+                } else {
+                    $routeList[$key][$k] = false;
                 }
             }
         }
@@ -71,7 +75,7 @@ class RolesPermissionController extends Controller
     public function update(Request $request, $id)
     {
         $routeList = get_route_list();
-        if($request->permission == null){
+        if ($request->permission == null) {
             $request->permission = $routeList;
         }
         foreach ($request->permission as $key => $value) {
