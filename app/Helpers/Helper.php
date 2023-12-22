@@ -1,6 +1,7 @@
 <?php
 
-//slug generate
+use App\Models\BankAccount;
+
 function slugify($text)
 {
     // replace non letter or digits by -
@@ -115,4 +116,33 @@ function main_menu_permission($menuName)
         }
         return false;
     }
+}
+
+//bank account balance update for deposit
+function bank_account_balance_update_for_deposit($bank_account, $amount)
+{
+    $bank_account = BankAccount::find($bank_account);
+    $bank_account->total_deposit += $amount;
+    $bank_account->save();
+}
+
+//bank account balance update for withdraw
+function bank_account_balance_update_for_withdraw($bank_account, $amount)
+{
+    //update bank_account_to_stores table
+    $bank_account = BankAccount::find($bank_account);
+    $bank_account->total_withdraw += $amount;
+    $bank_account->save();
+}
+
+function bank_account_balance_update_for_transfer($from_account, $to_account, $amount)
+{
+    //update bank_account_to_stores table
+    $bank_account = BankAccount::find($from_account);
+    $bank_account->total_transfer_to_others += $amount;
+    $bank_account->save();
+
+    $bank_account = BankAccount::find($to_account);
+    $bank_account->total_transfer_from_others += $amount;
+    $bank_account->save();
 }

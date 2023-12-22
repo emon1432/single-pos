@@ -18,6 +18,91 @@
                     </a>
                 </li>
 
+                @if (main_menu_permission('accounting') ||
+                        main_menu_permission('bank-accounts') ||
+                        main_menu_permission('income-sources') ||
+                        main_menu_permission('expense-categories'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Accounting</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (check_permission('accounting.deposit'))
+                                <li>
+                                    <a href="{{ url('deposit') }}">
+                                        Deposit
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('accounting.withdraw'))
+                                <li>
+                                    <a href="{{ url('withdraw') }}">
+                                        Withdraw
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('accounting.transaction-history'))
+                                <li>
+                                    <a href="{{ url('transaction-history') }}">
+                                        Transaction History </a>
+                                </li>
+                            @endif
+                            @if (check_permission('bank-accounts.create'))
+                                <li>
+                                    <a href="{{ url('bank-accounts/create') }}">
+                                        Add Bank Account
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('bank-accounts.index'))
+                                <li>
+                                    <a href="{{ url('bank-accounts') }}">
+                                        Bank Account List
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('accounting.bank-transfer-create'))
+                                <li>
+                                    <a href="{{ url('bank-transfer') }}">
+                                        Add Transfer </a>
+                                </li>
+                            @endif
+                            @if (check_permission('accounting.bank-transfers-list'))
+                                <li>
+                                    <a href="{{ url('bank-transfer-list') }}">
+                                        Transfer
+                                        List </a>
+                                </li>
+                            @endif
+                            @if (check_permission('accounting.balance-sheet'))
+                                <li>
+                                    <a href="{{ url('balance-sheet') }}">
+                                        Balance
+                                        Sheet
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('income-sources.index'))
+                                <li>
+                                    <a href="{{ url('income-sources') }}">
+                                        Income
+                                        Sources </a>
+                                </li>
+                            @endif
+                            @if (check_permission('expense-categories.index'))
+                                <li>
+                                    <a href="{{ url('expense-categories') }}">
+                                        Expense
+                                        Categories </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
                 @if (main_menu_permission('purchase'))
                     <li>
                         <a href="javaScript:void();">

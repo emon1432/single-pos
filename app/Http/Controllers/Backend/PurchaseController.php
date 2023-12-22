@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BankTransaction;
 use App\Models\Category;
 use App\Models\PaymentMethod;
 use App\Models\Product;
@@ -67,7 +68,7 @@ class PurchaseController extends Controller
         $purchase->discount = $request->discount_amount;
         $purchase->total_amount = $request->total_amount;
         $purchase->note = $request->note;
-
+        $purchase->created_by = auth()->user()->id;
         $purchase->save();
 
         //save product_id and category_id in purchase_items table where $request->product_id is array of product_id
@@ -167,30 +168,30 @@ class PurchaseController extends Controller
         $purchase->save();
 
         //create bank transaction
-        // if ($request->paid_amount > 0) {
-        //     //create bank transaction
-        //     $bank_transaction = new BankTransaction();
-        //     $bank_transaction->transaction_type = 'withdraw';
-        //     $bank_transaction->amount = $request->paid_amount;
-        //     $bank_transaction->to_bank_account_id = '1';
-        //     if ($request->type == 'Due Paid') {
-        //         $bank_transaction->expense_category_id = '2';
-        //     } else {
-        //         $bank_transaction->expense_category_id = '1';
-        //     }
-        //     $bank_transaction->purchase_id = $request->purchase_id;
-        //     $bank_transaction->invoice_id = $request->purchase_no;
+        if ($request->paid_amount > 0) {
+            //create bank transaction
+            $bank_transaction = new BankTransaction();
+            $bank_transaction->transaction_type = 'withdraw';
+            $bank_transaction->amount = $request->paid_amount;
+            $bank_transaction->to_bank_account_id = '1';
+            if ($request->type == 'Due Paid') {
+                $bank_transaction->expense_category_id = '2';
+            } else {
+                $bank_transaction->expense_category_id = '1';
+            }
+            $bank_transaction->purchase_id = $request->purchase_id;
+            $bank_transaction->invoice_id = $request->purchase_no;
 
-        //     $bank_transaction->reference_no = $request->payment_reference;
+            $bank_transaction->reference_no = $request->payment_reference;
 
-        //     $bank_transaction->details = $request->note;
-        //     $bank_transaction->payment_method_id = $request->payment_method_id;
-        //     $bank_transaction->created_by = auth()->user()->id;
-        //     $bank_transaction->save();
+            $bank_transaction->details = $request->note;
+            $bank_transaction->payment_method_id = $request->payment_method_id;
+            $bank_transaction->created_by = auth()->user()->id;
+            $bank_transaction->save();
 
-        //     //call helper function to update bank account balance for withdraw
-        //     bank_account_balance_update_for_withdraw('1', $request->paid_amount);
-        // }
+            //call helper function to update bank account balance for withdraw
+            bank_account_balance_update_for_withdraw('1', $request->paid_amount);
+        }
 
         if ($request->type == 'Due Paid') {
             notify()->success('Due Paid successfully');

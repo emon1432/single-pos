@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Backend\BankAccountController;
+use App\Http\Controllers\Backend\Accounting\BankAccountController;
+use App\Http\Controllers\Backend\Accounting\BankTransactionController;
+use App\Http\Controllers\Backend\Accounting\ExpenseCategoryController;
+use App\Http\Controllers\Backend\Accounting\IncomeSourceController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
@@ -88,13 +91,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // --------------------> expense-categories <--------------------
     Route::resource('/expense-categories', ExpenseCategoryController::class);
 
-    // --------------------> monthWise <--------------------
-    Route::controller(MonthWiseController::class)->group(function () {
-        // --------------------> income <--------------------
-        Route::get('/income-month-wise', 'income')->name('accounting.income-month-wise');
-        // --------------------> expense <--------------------
-        Route::get('/expense-month-wise', 'expense')->name('accounting.expense-month-wise');
-    });
 
 
     // --------------------> roles & permission <--------------------

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Accounting;
 
 use App\Http\Controllers\Controller;
 use App\Models\BankAccount;
@@ -74,5 +74,16 @@ class BankAccountController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function balance_sheet()
+    {
+        //active store bank_account_to_stores
+        $bank_accounts_balance_sheet = BankAccount::where('status', 1)
+            ->get();
+
+        // return response()->json($bank_accounts_balance_sheet);
+
+        return view('backend.pages.accounting.bank_account.balance_sheet', compact('bank_accounts_balance_sheet'));
     }
 }
