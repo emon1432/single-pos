@@ -8,9 +8,11 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\PosController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RolesPermissionController;
+use App\Http\Controllers\Backend\SellController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
@@ -25,6 +27,22 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard.index');
     })->name('dashboard');
+
+    // --------------------- POS ---------------------
+    Route::controller(PosController::class)->group(function () {
+        Route::get('/pos',  'index')->name('pos.index');
+        Route::get('/pos/product/search',  'searchProduct')->name('pos.product_search');
+        Route::post('/pos/checkout', 'checkout')->name('pos.checkout');
+        Route::post('/sell/log', 'createSellLog')->name('pos.sell_log');
+    });
+
+    // --------------------- Sell ---------------------
+    Route::controller(SellController::class)->group(function () {
+        Route::get('/sell-list',  'index')->name('sell.list');
+        Route::get('/sell-details/{id}/',  'sellDetails')->name('sell.details');
+        Route::get('/sell-due/pay/{id}/', 'sellDuePay')->name('sell.due-pay');
+        Route::get('/sell/log', 'sellLog')->name('sell.log-list');
+    });
 
     // --------------------> customers <--------------------
     Route::resource('customers', CustomerController::class)->except(['show', 'edit', 'create']);

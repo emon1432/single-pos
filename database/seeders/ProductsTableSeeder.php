@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -14,13 +15,10 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-        \DB::table('products')->delete();
-        
-        \DB::table('products')->insert(array (
-            0 => 
-            array (
+        DB::table('products')->delete();
+        DB::table('products')->insert(array(
+            0 =>
+            array(
                 'id' => 1,
                 'name' => 'Summer Hoover',
                 'slug' => 'summer-hoover',
@@ -29,8 +27,10 @@ class ProductsTableSeeder extends Seeder
                 'brand_id' => 1,
                 'unit_id' => 3,
                 'supplier_id' => 4,
-                'purchase_price' => '0.00',
-                'selling_price' => '419.00',
+                'unit_purchase_price' => '0.00',
+                'subunit_purchase_price' => '0.00',
+                'unit_sale_price' => '100.00',
+                'subunit_sale_price' => '90.00',
                 'unit_quantity_in_stock' => 0,
                 'subunit_quantity_in_stock' => 0,
                 'alert_quantity' => 820,
@@ -44,8 +44,8 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2023-12-08 19:17:25',
                 'updated_at' => '2023-12-08 19:17:25',
             ),
-            1 => 
-            array (
+            1 =>
+            array(
                 'id' => 2,
                 'name' => 'Conan Sloan',
                 'slug' => 'conan-sloan',
@@ -54,8 +54,10 @@ class ProductsTableSeeder extends Seeder
                 'brand_id' => 3,
                 'unit_id' => 1,
                 'supplier_id' => 2,
-                'purchase_price' => '0.00',
-                'selling_price' => '12.00',
+                'unit_purchase_price' => '0.00',
+                'subunit_purchase_price' => '0.00',
+                'unit_sale_price' => '100.00',
+                'subunit_sale_price' => '90.00',
                 'unit_quantity_stock' => 0,
                 'subunit_quantity_stock' => 0,
                 'alert_quantity' => 114,
@@ -69,8 +71,8 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2023-12-08 19:17:31',
                 'updated_at' => '2023-12-08 19:17:31',
             ),
-            2 => 
-            array (
+            2 =>
+            array(
                 'id' => 3,
                 'name' => 'Math Notebook',
                 'slug' => 'math-notebook',
@@ -79,8 +81,10 @@ class ProductsTableSeeder extends Seeder
                 'brand_id' => 2,
                 'unit_id' => 6,
                 'supplier_id' => 4,
-                'purchase_price' => '0.00',
-                'selling_price' => '875.00',
+                'unit_purchase_price' => '0.00',
+                'subunit_purchase_price' => '0.00',
+                'unit_sale_price' => '100.00',
+                'subunit_sale_price' => '90.00',
                 'unit_quantity_stock' => 0,
                 'subunit_quantity_stock' => 0,
                 'alert_quantity' => 470,
@@ -95,7 +99,5 @@ class ProductsTableSeeder extends Seeder
                 'updated_at' => '2023-12-08 19:18:01',
             ),
         ));
-        
-        
     }
 }

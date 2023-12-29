@@ -20,8 +20,10 @@ return new class extends Migration
             $table->integer('brand_id')->default(1);
             $table->integer('unit_id')->default(1);
             $table->integer('supplier_id')->default(1);
-            $table->decimal('purchase_price', 18, 2)->default(0);
-            $table->decimal('selling_price', 18, 2)->default(0);
+            $table->decimal('unit_purchase_price', 18, 2)->default(0);
+            $table->decimal('subunit_purchase_price', 18, 2)->default(0);
+            $table->decimal('unit_sale_price', 18, 2)->default(0);
+            $table->decimal('subunit_sale_price', 18, 2)->default(0);
             $table->integer('unit_quantity_in_stock')->default(0);
             $table->integer('subunit_quantity_in_stock')->default(0);
             $table->integer('alert_quantity')->default(0);

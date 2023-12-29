@@ -86,8 +86,10 @@ class PurchaseController extends Controller
             $purchase_item->total = $request->total_price[$key];
             $purchase_item->save();
 
-            //update product stock
+            //update product stock and price
             $product = Product::find($product_id);
+            $product->unit_purchase_price = $request->unit_price[$key];
+            $product->subunit_purchase_price = $request->subunit_price[$key];
             $product->unit_quantity_in_stock = $product->unit_quantity_in_stock + $request->unit_quantity[$key];
             $product->subunit_quantity_in_stock = $product->subunit_quantity_in_stock + $request->subunit_quantity[$key];
             $product->save();
@@ -107,9 +109,10 @@ class PurchaseController extends Controller
         //get purchase with supplier and user by id join with purchase_items
         $purchase = Purchase::with('supplier', 'user', 'purchaseItems')->where('id', $id)->first();
 
-        return response()->json($purchase);
+        notify()->success('Product Purchase successfully');
+        return redirect()->route('dashboard');
 
-        return view('backend.pages.purchase.show', compact('purchase'));
+        // return view('backend.pages.purchase.show', compact('purchase'));
     }
 
     public function edit(string $id)

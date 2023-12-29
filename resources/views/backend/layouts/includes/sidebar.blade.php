@@ -18,6 +18,40 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('pos.index') }}">
+                        <img src="{{ asset('backend') }}/images/svg-icon/dashboard.svg" class="img-fluid"
+                            alt="pos">
+                        <span>POS</span>
+                    </a>
+                </li>
+                @if (main_menu_permission('sell'))
+                    <li>
+                        <a href="javaScript:void();">
+                            <img src="{{ asset('backend') }}/images/svg-icon/basic.svg" class="img-fluid"
+                                alt="basic">
+                            <span>Sell</span>
+                            <i class="feather icon-chevron-right pull-right"></i>
+                        </a>
+                        <ul class="vertical-submenu">
+                            @if (check_permission('sell.list'))
+                                <li>
+                                    <a href="{{ url('sell-list') }}">
+                                        Sell List
+                                    </a>
+                                </li>
+                            @endif
+                            @if (check_permission('sell.log-list'))
+                                <li>
+                                    <a href="{{ url('sell/log') }}">
+                                        Sell Log
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
                 @if (main_menu_permission('accounting') ||
                         main_menu_permission('bank-accounts') ||
                         main_menu_permission('income-sources') ||

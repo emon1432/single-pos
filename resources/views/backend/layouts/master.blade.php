@@ -13,7 +13,7 @@
     <!-- Fevicon -->
     <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico">
     <!-- Start css -->
-    
+
     <!-- Switchery css -->
     <link href="{{ asset('backend') }}/plugins/switchery/switchery.min.css" rel="stylesheet">
     <!-- Apex css -->
@@ -38,15 +38,22 @@
 
 <body class="vertical-layout">
     <div id="containerbar">
-        @include('backend.layouts.includes.sidebar')
-        <div class="rightbar">
-            @include('backend.layouts.includes.header')
-            @include('backend.layouts.includes.breadcrumb')
-            <div class="contentbar">
-                @yield('content')
+        @php
+            $route = Route::currentRouteName();
+        @endphp
+        @if ($route == 'pos.index')
+            @yield('pos')
+        @else
+            @include('backend.layouts.includes.sidebar')
+            <div class="rightbar">
+                @include('backend.layouts.includes.header')
+                @include('backend.layouts.includes.breadcrumb')
+                <div class="contentbar">
+                    @yield('content')
+                </div>
+                @include('backend.layouts.includes.footer')
             </div>
-            @include('backend.layouts.includes.footer')
-        </div>
+        @endif
     </div>
     <!-- Start js -->
     <script src="{{ asset('backend') }}/js/jquery.min.js"></script>
@@ -66,7 +73,7 @@
 
     <!-- Select2 js -->
     <script src="{{ asset('backend') }}/plugins/select2/select2.min.js"></script>
-    
+
     <!-- Custom Dashboard js -->
     <script src="{{ asset('backend') }}/js/custom/custom-dashboard.js"></script>
     <!-- Summernote js -->
